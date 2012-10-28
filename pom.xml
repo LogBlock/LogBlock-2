@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-      <version>${bukkit.version}</version>F
+            <version>${bukkit.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
