@@ -45,7 +45,7 @@ public class Commands implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Method method = commandMap.get(label);
-        if (method == null)
+        if (method != null)
         {
             AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
             if (!sender.hasPermission("logblock." + label))
