@@ -44,6 +44,7 @@ public class Commands implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
+        label = label.toLowerCase();
         Method method = commandMap.get(label);
         if (method != null)
         {
@@ -82,9 +83,45 @@ public class Commands implements CommandExecutor
         return true;
     }
 
-    @AnnotatedCommand(name = "help")
+    @AnnotatedCommand(name = "help", usage = "help <page/command>", description = "Gets a list of commands or specific help for a single command", maxArgs = 1)
     public static void help(CommandSender sender, String[] args)
     {
+        int numCommands = commandMap.values().size();
+        int pages = (int) Math.ceil(numCommands / 8);
+
+        if (args.length == 0)
+        {
+            sender.sendMessage(ChatColor.GOLD + "=====[Commands]====");
+            if (pages > 1)
+                sender.sendMessage(ChatColor.GOLD + "========[1/" + pages + "]========");
+            for (Method method : commandMap.values())
+            {
+                AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
+                sender.sendMessage(ChatColor.AQUA + annotation.name() + " (" + ChatColor.GREEN + annotation.usage() + ChatColor.AQUA + ") " + ChatColor.GOLD + "- " + annotation.description());
+            }
+            sender.sendMessage(ChatColor.GOLD + "===================");
+        }
+
+        if (args.length == 1)
+        {
+            try
+            {
+                int page = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e)
+            {
+                Method method = commandMap.get(args[0].toLowerCase());
+                if (method != null)
+                {
+                    AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
+                    sender.sendMessage(ChatColor.GOLD + "Help for " + ChatColor.AQUA + annotation.name());
+                    sender.sendMessage(ChatColor.GOLD + "Usage: " + ChatColor.AQUA + annotation.usage());
+                    sender.sendMessage(ChatColor.GOLD + "Description " + ChatColor.AQUA + annotation.description());
+                } else
+                {
+                    throw new CommandException("Invalid page number and no command by the name of '" + args[0] + "'");
+                }
+            }
+        }
     }
 
     @AnnotatedCommand(name = "version")
@@ -99,6 +136,10 @@ public class Commands implements CommandExecutor
     {
 
         String name();
+
+        String usage() default "";
+
+        String description() default "";
 
         int minArgs() default 0;
 
