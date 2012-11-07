@@ -59,12 +59,19 @@ public class Commands implements CommandExecutor
                 sender.sendMessage(ChatColor.RED + "Please check your argument count, the command you have requested only accepts up to " + annotation.maxArgs() + " arguments.");
             } else
             {
-                try
+                invoker:
                 {
-                    method.invoke(null, sender, args);
-                } catch (Exception ex)
-                {
-                    throw new CommandException("Error occured whilst executing LogBlock subcommand " + label, ex);
+                    try
+                    {
+                        method.invoke(null, sender, args);
+                    } catch (CommandException e)
+                    {
+                        sender.sendMessage(ChatColor.RED + e.getMessage());
+                        break invoker;
+                    } catch (Exception ex)
+                    {
+                        throw new CommandException("Error occured whilst executing LogBlock subcommand " + label, ex);
+                    }
                 }
             }
         } else
