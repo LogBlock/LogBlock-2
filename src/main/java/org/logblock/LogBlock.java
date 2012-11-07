@@ -29,9 +29,22 @@ public class LogBlock extends JavaPlugin
     {
         getCommand("logblock").setExecutor(new Commands());
 
-        config = new Configuration();
-        consumer = new Consumer();
-        database = new DatabaseManager(config);
+        try
+        {
+            config = new Configuration();
+            consumer = new Consumer();
+            database = new DatabaseManager(config);
+        } catch (Exception e)
+        {
+            getLogger().severe("=========================");
+            getLogger().severe("Error starting up logblock");
+            getLogger().severe(e.getMessage());
+            getLogger().severe("");
+            e.printStackTrace();
+            getLogger().severe("=========================");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
         try
         {
