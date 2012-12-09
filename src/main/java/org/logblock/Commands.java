@@ -91,10 +91,13 @@ public class Commands implements CommandExecutor
 
         if (args.length == 0)
         {
-            sender.sendMessage(ChatColor.GOLD + "=====[Commands]====");
             if (pages > 1)
-                sender.sendMessage(ChatColor.GOLD + "========[1/" + pages + "]========");
-            for (Method method : commandMap.values())
+            {
+                sender.sendMessage(ChatColor.GOLD + "==[Commands - Page 1/" + pages + "]==");
+            } else
+            {
+                sender.sendMessage(ChatColor.GOLD + "=====[Commands]====");
+            } for (Method method : commandMap.values())
             {
                 AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
                 sender.sendMessage(ChatColor.AQUA + annotation.name() + " (" + ChatColor.GREEN + annotation.usage() + ChatColor.AQUA + ") " + ChatColor.GOLD + "- " + annotation.description());
