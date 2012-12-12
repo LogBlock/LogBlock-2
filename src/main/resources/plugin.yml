@@ -1,0 +1,20 @@
+name: ${project.name}
+version: ${describe}
+description: ${project.description}
+authors: [md_5, ammar2]
+website: ${project.url}
+
+main: org.logblock.LogBlock
+
+commands:
+  logblock:
+    description: The core LogBlock command
+
+permissions:
+  logblock.*:
+    description: Gives access to all LogBlock commands
+    children:
+      logblock.lookup: true
+  logblock.lookup:
+    description: Allows querying the LogBlock database for entries
+    default: op

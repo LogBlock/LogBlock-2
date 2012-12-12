@@ -32,6 +32,3 @@
 *.ipr
 *.iws
 .idea/
-
-# other files
-/*log*
