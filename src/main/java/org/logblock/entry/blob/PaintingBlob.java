@@ -1,16 +1,21 @@
 package org.logblock.entry.blob;
 
+import org.logblock.entry.BlobEntry;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import org.bukkit.Art;
-import org.bukkit.block.BlockFace;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class PaintingBlob extends BlobEntry
 {
 
-    private Art art;
-    private BlockFace direction;
+    private String art;
+    private byte direction;
 
     public PaintingBlob(int id, byte type)
     {
@@ -20,14 +25,14 @@ public class PaintingBlob extends BlobEntry
     @Override
     public void read(DataInput in) throws IOException
     {
-        art = Art.getByName(in.readUTF());
-        direction = BlockFace.values()[in.readByte()];
+        art = in.readUTF();
+        direction = in.readByte();
     }
 
     @Override
     public void write(DataOutput out) throws IOException
     {
-        out.writeUTF(art.name());
-        out.writeByte(direction.ordinal());
+        out.writeUTF(art);
+        out.writeByte(direction);
     }
 }

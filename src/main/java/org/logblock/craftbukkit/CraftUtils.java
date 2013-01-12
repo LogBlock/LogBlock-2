@@ -1,8 +1,8 @@
 package org.logblock.craftbukkit;
 
-import net.minecraft.server.NBTCompressedStreamTools;
-import net.minecraft.server.NBTTagCompound;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
+import net.minecraft.server.v1_4_6.NBTCompressedStreamTools;
+import net.minecraft.server.v1_4_6.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_4_6.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 public class CraftUtils
@@ -10,15 +10,14 @@ public class CraftUtils
 
     public byte[] getNBT(ItemStack item)
     {
-        CraftItemStack craft = (CraftItemStack) item;
-        NBTTagCompound compound = craft.getHandle().getTag();
+        NBTTagCompound compound = CraftItemStack.asNMSCopy(item).getTag();
         return NBTCompressedStreamTools.a(compound);
     }
 
-    public void setNBT(ItemStack item, byte[] nbt)
+    public ItemStack setNBT(ItemStack item, byte[] nbt)
     {
-        CraftItemStack craft = (CraftItemStack) item;
-        NBTTagCompound compound = NBTCompressedStreamTools.a(nbt);
-        craft.getHandle().setTag(compound);
+        net.minecraft.server.v1_4_6.ItemStack nms = CraftItemStack.asNMSCopy(item);
+        nms.setTag(NBTCompressedStreamTools.a(nbt));
+        return CraftItemStack.asBukkitCopy(nms);
     }
 }

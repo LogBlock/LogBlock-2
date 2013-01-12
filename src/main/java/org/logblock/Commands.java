@@ -60,7 +60,6 @@ public class Commands implements CommandExecutor
                 sender.sendMessage(ChatColor.RED + "Please check your argument count, the command you have requested only accepts up to " + annotation.maxArgs() + " arguments.");
             } else
             {
-                invoker:
                 {
                     try
                     {
@@ -68,7 +67,6 @@ public class Commands implements CommandExecutor
                     } catch (CommandException e)
                     {
                         sender.sendMessage(ChatColor.RED + e.getMessage());
-                        break invoker;
                     } catch (Exception ex)
                     {
                         throw new CommandException("Error occured whilst executing LogBlock subcommand " + label, ex);
@@ -97,7 +95,8 @@ public class Commands implements CommandExecutor
             } else
             {
                 sender.sendMessage(ChatColor.GOLD + "=====[Commands]====");
-            } for (Method method : commandMap.values())
+            }
+            for (Method method : commandMap.values())
             {
                 AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
                 sender.sendMessage(ChatColor.AQUA + annotation.name() + " (" + ChatColor.GREEN + annotation.usage() + ChatColor.AQUA + ") " + ChatColor.GOLD + "- " + annotation.description());

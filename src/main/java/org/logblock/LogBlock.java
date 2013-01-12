@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.logblock.entry.AbstractEntry;
+import org.logblock.entry.EntryManager;
 import org.logblock.entry.MainEntry;
 import org.logblock.entry.PlayerEntry;
 import org.mcstats.Metrics;
@@ -92,6 +93,11 @@ public class LogBlock extends JavaPlugin
     }
 
     public List<AbstractEntry> getChildren(MainEntry entry)
+    {
+        return null;
+    }
+
+    public EntryManager getEntryManager()
     {
         return null;
     }

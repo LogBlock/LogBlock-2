@@ -1,15 +1,16 @@
-package org.logblock.entry.blob;
+package org.logblock.entry;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.logging.Level;
 import org.logblock.LogBlock;
-import org.logblock.entry.AbstractEntry;
+import org.logblock.entry.blob.PaintingBlob;
 
 public abstract class BlobEntry extends AbstractEntry
 {
 
+    @SuppressWarnings("unchecked")
     private static final Class<? extends BlobEntry>[] mappings = new Class[256];
     private byte type;
 
