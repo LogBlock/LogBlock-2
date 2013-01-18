@@ -28,6 +28,20 @@ public class MainEntry extends AbstractEntry
     private List<AbstractEntry> children;
     private PlayerEntry player;
 
+    public MainEntry(Action action, Date date, int playerId, int from, byte fromData, int to, byte toData, int x, int y, int z)
+    {
+        this.action = action;
+        this.date = date;
+        this.playerId = playerId;
+        this.from = from;
+        this.fromData = fromData;
+        this.to = to;
+        this.toData = toData;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public MainEntry(int id, Action action, Date date, int playerId, int from, byte fromData, int to, byte toData, int x, int y, int z)
     {
         super(id);
@@ -45,11 +59,11 @@ public class MainEntry extends AbstractEntry
 
     public PlayerEntry getPlayer()
     {
-        return (player == null) ? player = LogBlock.getInstance().getPlayer(playerId) : player;
+        return (player == null) ? player = LogBlock.getInstance().getEntryManager().getPlayer(playerId) : player;
     }
 
     public List<AbstractEntry> getChildren()
     {
-        return (children == null) ? children = LogBlock.getInstance().getChildren(this) : children;
+        return (children == null) ? children = LogBlock.getInstance().getEntryManager().getChildren(this) : children;
     }
 }

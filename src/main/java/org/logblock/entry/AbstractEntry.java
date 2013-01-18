@@ -8,6 +8,10 @@ public abstract class AbstractEntry
 
     private int id;
 
+    public AbstractEntry()
+    {
+    }
+
     public AbstractEntry(int id)
     {
         this.id = id;

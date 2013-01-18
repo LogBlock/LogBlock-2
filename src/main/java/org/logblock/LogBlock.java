@@ -3,6 +3,7 @@ package org.logblock;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.logblock.entry.AbstractEntry;
 import org.logblock.entry.EntryManager;
@@ -13,10 +14,13 @@ import org.mcstats.Metrics;
 public class LogBlock extends JavaPlugin
 {
 
+    @Getter
     private static LogBlock instance;
     private Configuration config;
     private Consumer consumer;
     private DatabaseManager database;
+    @Getter
+    private EntryManager entryManager;
     private Metrics metrics;
 
     @Override
@@ -35,13 +39,13 @@ public class LogBlock extends JavaPlugin
             config = new Configuration();
             consumer = new Consumer();
             database = new DatabaseManager(config);
-        } catch (Exception e)
+        } catch (Exception ex)
         {
             getLogger().severe("=========================");
             getLogger().severe("Error starting up logblock");
-            getLogger().severe(e.getMessage());
+            getLogger().severe(ex.getMessage());
             getLogger().severe("");
-            e.printStackTrace();
+            ex.printStackTrace();
             getLogger().severe("=========================");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -80,25 +84,5 @@ public class LogBlock extends JavaPlugin
         }
 
         instance = null;
-    }
-
-    public static LogBlock getInstance()
-    {
-        return instance;
-    }
-
-    public PlayerEntry getPlayer(int id)
-    {
-        return null;
-    }
-
-    public List<AbstractEntry> getChildren(MainEntry entry)
-    {
-        return null;
-    }
-
-    public EntryManager getEntryManager()
-    {
-        return null;
     }
 }
