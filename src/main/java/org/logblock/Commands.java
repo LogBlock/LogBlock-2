@@ -1,5 +1,11 @@
 package org.logblock;
 
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandException;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -8,14 +14,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandException;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 
 public class Commands implements CommandExecutor
 {
+
+    private static final int COMMANDS_PER_PAGE = 8;
 
     private static final Map<String, Method> commandMap = new HashMap<String, Method>();
 
@@ -85,7 +88,7 @@ public class Commands implements CommandExecutor
     public static void help(CommandSender sender, String[] args)
     {
         int numCommands = commandMap.values().size();
-        int pages = (int) Math.ceil(numCommands / 8);
+        int pages = (int) Math.ceil(numCommands / COMMANDS_PER_PAGE);
 
         if (args.length == 0)
         {

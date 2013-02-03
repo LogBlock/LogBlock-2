@@ -1,15 +1,12 @@
 package org.logblock;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.logblock.entry.AbstractEntry;
 import org.logblock.entry.EntryManager;
-import org.logblock.entry.MainEntry;
-import org.logblock.entry.PlayerEntry;
 import org.mcstats.Metrics;
+
+import java.io.IOException;
+import java.util.logging.Level;
 
 public class LogBlock extends JavaPlugin
 {
@@ -33,7 +30,6 @@ public class LogBlock extends JavaPlugin
     public void onEnable()
     {
         getCommand("logblock").setExecutor(new Commands());
-
         try
         {
             config = new Configuration();
@@ -45,7 +41,9 @@ public class LogBlock extends JavaPlugin
             getLogger().severe("Error starting up logblock");
             getLogger().severe(ex.getMessage());
             getLogger().severe("");
-            ex.printStackTrace();
+            for (StackTraceElement element : ex.getStackTrace()) {
+                getLogger().severe(element.toString());
+            }
             getLogger().severe("=========================");
             getServer().getPluginManager().disablePlugin(this);
             return;

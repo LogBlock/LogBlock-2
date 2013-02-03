@@ -8,13 +8,13 @@ import org.bukkit.inventory.ItemStack;
 public class CraftUtils
 {
 
-    public byte[] getNBT(ItemStack item)
+    public static byte[] getNBT(ItemStack item)
     {
         NBTTagCompound compound = CraftItemStack.asNMSCopy(item).getTag();
         return NBTCompressedStreamTools.a(compound);
     }
 
-    public ItemStack setNBT(ItemStack item, byte[] nbt)
+    public static ItemStack setNBT(ItemStack item, byte[] nbt)
     {
         net.minecraft.server.v1_4_6.ItemStack nms = CraftItemStack.asNMSCopy(item);
         nms.setTag(NBTCompressedStreamTools.a(nbt));

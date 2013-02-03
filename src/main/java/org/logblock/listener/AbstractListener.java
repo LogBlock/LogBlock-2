@@ -1,10 +1,12 @@
 package org.logblock.listener;
 
-import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
+import org.logblock.LogBlock;
 
-public abstract class AbstractListener<T extends Event> implements Listener
+public abstract class AbstractListener<T> implements Listener
 {
 
     public abstract void listen(T event);
+
+    public abstract void register(LogBlock lb);
 }
