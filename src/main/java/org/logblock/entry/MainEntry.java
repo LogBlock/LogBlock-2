@@ -59,11 +59,11 @@ public class MainEntry extends AbstractEntry
 
     public PlayerEntry getPlayer()
     {
-        return (player == null) ? player = LogBlock.getInstance().getEntryManager().getPlayer(playerId) : player;
+        return (player == null) ? player = LogBlock.getInstance().getDataStore().getPlayer(playerId) : player;
     }
 
     public List<AbstractEntry> getChildren()
     {
-        return (children == null) ? children = LogBlock.getInstance().getEntryManager().getChildren(this) : children;
+        return (children == null) ? children = LogBlock.getInstance().getDataStore().getChildren(this) : children;
     }
 }

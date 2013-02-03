@@ -2,7 +2,8 @@ package org.logblock;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.logblock.entry.EntryManager;
+import org.logblock.storage.DataStore;
+import org.logblock.storage.mysql.MySQLDataStore;
 import org.mcstats.Metrics;
 
 import java.io.IOException;
@@ -13,11 +14,11 @@ public class LogBlock extends JavaPlugin
 
     @Getter
     private static LogBlock instance;
+    @Getter
+    private DataStore dataStore;
+
     private Configuration config;
     private Consumer consumer;
-    private DatabaseManager database;
-    @Getter
-    private EntryManager entryManager;
     private Metrics metrics;
 
     @Override
@@ -33,12 +34,13 @@ public class LogBlock extends JavaPlugin
         try
         {
             config = new Configuration();
-            consumer = new Consumer();
-            database = new DatabaseManager(config);
+            consumer = new Consumer(this);
+            dataStore = new MySQLDataStore(this, config); // TODO: base this off the config option
         } catch (Exception ex)
         {
             getLogger().severe("=========================");
             getLogger().severe("Error starting up logblock");
+            getLogger().severe("Please provide this entire from the first divider to the last if you are going to report this");
             getLogger().severe(ex.getMessage());
             getLogger().severe("");
             for (StackTraceElement element : ex.getStackTrace()) {
@@ -75,10 +77,9 @@ public class LogBlock extends JavaPlugin
             }
         }
 
-        if (database != null)
+        if (dataStore != null)
         {
-            getLogger().info("Closing remaining SQL connections");
-            database.getDataSource().close();
+            dataStore.onDisable();
         }
 
         instance = null;

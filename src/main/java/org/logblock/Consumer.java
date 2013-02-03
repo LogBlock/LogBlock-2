@@ -1,17 +1,20 @@
 package org.logblock;
 
+import org.logblock.entry.AbstractEntry;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import org.logblock.entry.AbstractEntry;
 
 public class Consumer extends Thread
 {
 
     private final BlockingQueue<AbstractEntry> queue = new LinkedBlockingQueue<AbstractEntry>();
+    private LogBlock lb;
 
-    public Consumer()
+    public Consumer(LogBlock lb)
     {
         super("LogBlock Consumer");
+        this.lb = lb;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class Consumer extends Thread
             }
             if (entry != null)
             {
-                // do stuff with it
+                lb.getDataStore().write(entry);
             }
         }
     }

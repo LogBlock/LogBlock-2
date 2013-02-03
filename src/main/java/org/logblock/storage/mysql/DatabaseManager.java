@@ -1,6 +1,8 @@
-package org.logblock;
+package org.logblock.storage.mysql;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.logblock.Configuration;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
