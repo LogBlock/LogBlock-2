@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Data
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class TextEntry extends AbstractEntry
 {
 

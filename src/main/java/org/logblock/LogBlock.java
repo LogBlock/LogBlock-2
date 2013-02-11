@@ -40,7 +40,7 @@ public class LogBlock extends JavaPlugin
         {
             getLogger().severe("=========================");
             getLogger().severe("Error starting up logblock");
-            getLogger().severe("Please provide this entire from the first divider to the last if you are going to report this");
+            getLogger().severe("Please provide this entire error if you are going to report this");
             getLogger().severe(ex.getMessage());
             getLogger().severe("");
             for (StackTraceElement element : ex.getStackTrace()) {

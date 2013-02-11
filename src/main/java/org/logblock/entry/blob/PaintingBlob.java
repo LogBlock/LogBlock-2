@@ -1,16 +1,17 @@
 package org.logblock.entry.blob;
 
-import org.logblock.entry.BlobEntry;
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.logblock.entry.BlobEntry;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 
 @Data
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class PaintingBlob extends BlobEntry
 {
 
