@@ -14,6 +14,7 @@ public class Consumer extends Thread
     public Consumer(LogBlock lb)
     {
         super("LogBlock Consumer");
+
         this.lb = lb;
     }
 

@@ -8,13 +8,9 @@ main: org.logblock.LogBlock
 
 commands:
   logblock:
+    aliases: [lb]
     description: The core LogBlock command
 
 permissions:
-  logblock.*:
+  logblock.command.*:
     description: Gives access to all LogBlock commands
-    children:
-      logblock.lookup: true
-  logblock.lookup:
-    description: Allows querying the LogBlock database for entries
-    default: op

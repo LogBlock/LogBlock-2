@@ -2,7 +2,12 @@ package org.logblock.storage.mysql;
 
 import org.logblock.Configuration;
 import org.logblock.LogBlock;
-import org.logblock.entry.*;
+import org.logblock.entry.AbstractEntry;
+import org.logblock.entry.BlobEntry;
+import org.logblock.entry.ItemEntry;
+import org.logblock.entry.MainEntry;
+import org.logblock.entry.PlayerEntry;
+import org.logblock.entry.TextEntry;
 import org.logblock.query.Query;
 import org.logblock.storage.DataStore;
 
@@ -13,7 +18,8 @@ public class MySQLDataStore extends DataStore
     private LogBlock lb;
     private DatabaseManager database;
 
-    public MySQLDataStore(LogBlock lb, Configuration config) {
+    public MySQLDataStore(LogBlock lb, Configuration config)
+    {
         this.lb = lb;
         this.database = new DatabaseManager(config);
     }
@@ -27,7 +33,8 @@ public class MySQLDataStore extends DataStore
     @Override
     public void onDisable()
     {
-        if (database != null) {
+        if (database != null)
+        {
             lb.getLogger().info("Closing remaining SQL connections");
             this.database.getDataSource().close();
         }

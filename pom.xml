@@ -9,7 +9,8 @@
 
     <name>LogBlock-2</name>
     <url>https://github.com/LogBlock/LogBlock-2</url>
-    <description>A new and improved rewrite of Minecraft's number 1 rollback and grief prevention plugin, LogBlock.</description>
+    <description>A new and improved rewrite of Minecraft's number 1 rollback and grief prevention plugin, LogBlock.
+    </description>
 
     <properties>
         <build.number>unknown</build.number>

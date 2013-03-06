@@ -1,11 +1,12 @@
 package org.logblock.entry;
 
+import org.logblock.LogBlock;
+import org.logblock.entry.blob.PaintingBlob;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.logging.Level;
-import org.logblock.LogBlock;
-import org.logblock.entry.blob.PaintingBlob;
 
 public abstract class BlobEntry extends AbstractEntry
 {

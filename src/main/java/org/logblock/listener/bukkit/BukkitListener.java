@@ -8,11 +8,13 @@ public abstract class BukkitListener<T extends Event> extends AbstractListener<T
 {
     private LogBlock lb;
 
-    public BukkitListener(LogBlock lb) {
+    public BukkitListener(LogBlock lb)
+    {
         this.lb = lb;
     }
 
-    public void register(LogBlock lb) {
+    public void register(LogBlock lb)
+    {
         lb.getServer().getPluginManager().registerEvents(this, lb);
     }
 }

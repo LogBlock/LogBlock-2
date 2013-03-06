@@ -43,7 +43,8 @@ public class LogBlock extends JavaPlugin
             getLogger().severe("Please provide this entire error if you are going to report this");
             getLogger().severe(ex.getMessage());
             getLogger().severe("");
-            for (StackTraceElement element : ex.getStackTrace()) {
+            for (StackTraceElement element : ex.getStackTrace())
+            {
                 getLogger().severe(element.toString());
             }
             getLogger().severe("=========================");
