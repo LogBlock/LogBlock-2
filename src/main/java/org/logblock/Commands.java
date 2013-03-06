@@ -38,7 +38,7 @@ public class Commands implements CommandExecutor
                         if (annotation != null)
                         {
                             commandMap.put(annotation.name(), m);
-                            Permission perm = new Permission(annotation.name(), "Access to '/lb " + annotation.name() + "' command");
+                            Permission perm = new Permission("logblock.command." + annotation.name(), "Access to '/lb " + annotation.name() + "' command");
                             perm.addParent("logblock.command.*", true);
                         }
                     }
