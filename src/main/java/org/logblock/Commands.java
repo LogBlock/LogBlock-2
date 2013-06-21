@@ -22,24 +22,28 @@ public class Commands implements CommandExecutor
     private static final int COMMANDS_PER_PAGE = 8;
 
     private static final Map<String, Method> commandMap = new HashMap<String, Method>();
+    private static final Class[] commandClasses = new Class[]{Commands.class};
 
     static
     {
-        for (Method m : Commands.class.getDeclaredMethods())
+        for (Class clazz : commandClasses)
         {
-            if (Modifier.isStatic(m.getModifiers()))
+            for (Method m : clazz.getDeclaredMethods())
             {
-                Class<?>[] params = m.getParameterTypes();
-                if (params.length == 2)
+                if (Modifier.isStatic(m.getModifiers()))
                 {
-                    if (params[0] == CommandSender.class && params[1] == String[].class)
+                    Class<?>[] params = m.getParameterTypes();
+                    if (params.length == 2)
                     {
-                        AnnotatedCommand annotation = m.getAnnotation(AnnotatedCommand.class);
-                        if (annotation != null)
+                        if (params[0] == CommandSender.class && params[1] == String[].class)
                         {
-                            commandMap.put(annotation.name(), m);
-                            Permission perm = new Permission("logblock.command." + annotation.name(), "Access to '/lb " + annotation.name() + "' command");
-                            perm.addParent("logblock.command.*", true);
+                            AnnotatedCommand annotation = m.getAnnotation(AnnotatedCommand.class);
+                            if (annotation != null)
+                            {
+                                commandMap.put(annotation.name(), m);
+                                Permission perm = new Permission("logblock.command." + annotation.name(), "Access to '/lb " + annotation.name() + "' command");
+                                perm.addParent("logblock.command.*", true);
+                            }
                         }
                     }
                 }
@@ -131,9 +135,11 @@ public class Commands implements CommandExecutor
                 {
                     AnnotatedCommand annotation = method.getAnnotation(AnnotatedCommand.class);
                     sender.sendMessage(ChatColor.GOLD + "Help for " + ChatColor.AQUA + annotation.name());
-                    if (annotation.usage().equals("")) {
+                    if (annotation.usage().equals(""))
+                    {
                         sender.sendMessage(ChatColor.GOLD + "Usage: " + ChatColor.AQUA + "/lb " + annotation.name());
-                    } else {
+                    } else
+                    {
                         sender.sendMessage(ChatColor.GOLD + "Usage: " + ChatColor.AQUA + "/lb " + annotation.usage());
                     }
                     sender.sendMessage(ChatColor.GOLD + "Description: " + ChatColor.AQUA + annotation.description());
