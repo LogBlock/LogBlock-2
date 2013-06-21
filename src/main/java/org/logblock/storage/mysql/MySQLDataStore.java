@@ -18,7 +18,7 @@ public class MySQLDataStore extends DataStore
     private LogBlock lb;
     private DatabaseManager database;
 
-    public MySQLDataStore(LogBlock lb, Configuration config)
+    public MySQLDataStore(LogBlock lb, Configuration config) throws Throwable
     {
         this.lb = lb;
         this.database = new DatabaseManager(config);
@@ -35,8 +35,8 @@ public class MySQLDataStore extends DataStore
     {
         if (database != null)
         {
-            lb.getLogger().info("Closing remaining SQL connections");
-            this.database.getDataSource().close();
+            lb.getLogger().info("Closing SQL Pool");
+            this.database.shutDown();
         }
     }
 

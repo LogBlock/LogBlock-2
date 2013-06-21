@@ -36,7 +36,7 @@ public class LogBlock extends JavaPlugin
             config = new Configuration();
             consumer = new Consumer(this);
             dataStore = new MySQLDataStore(this, config); // TODO: base this off the config option
-        } catch (Exception ex)
+        } catch (Throwable ex)
         {
             getLogger().severe("=========================");
             getLogger().severe("Error starting up logblock");

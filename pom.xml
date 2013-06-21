@@ -32,10 +32,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.2-pre8</version>
-            <scope>compile</scope>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.8.0-rc1</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -124,8 +123,8 @@
                             <shadedPattern>org.logblock.lib.gson</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>com.mchange</pattern>
-                            <shadedPattern>org.logblock.lib.mchange</shadedPattern>
+                            <pattern>com.jolbox</pattern>
+                            <shadedPattern>org.logblock.lib.bonecp</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.mysql</pattern>
