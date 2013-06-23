@@ -14,7 +14,7 @@ import org.logblock.entry.MainEntry;
 public class BlockBreak extends BukkitListener<BlockBreakEvent>
 {
 
-    private byte blank = new Byte("");
+    private byte blank = (byte) 0;
 
     public BlockBreak(LogBlock lb)
     {
@@ -28,9 +28,9 @@ public class BlockBreak extends BukkitListener<BlockBreakEvent>
         Block block = event.getBlock();
         Player player = event.getPlayer();
         Location location = block.getLocation();
-        int x = (int) location.getX();
-        int y = (int) location.getX();
-        int z = (int) location.getX();
-        LogBlock.dataStore.write(new MainEntry(Action.BLOCK_BREAK, player.getName(), block.getTypeId(), blank, Material.AIR.getId(), blank, x, y, z));
+        int x = location.getBlockX();
+        int y = location.getBlockY();
+        int z = location.getBlockZ();
+        this.lb.getDataStore().write(new MainEntry(Action.BLOCK_BREAK, player.getName(), block.getTypeId(), block.getData(), Material.AIR.getId(), blank, x, y, z));
     }
 }
