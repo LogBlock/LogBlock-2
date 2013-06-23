@@ -6,7 +6,7 @@ import org.logblock.listener.AbstractListener;
 
 public abstract class BukkitListener<T extends Event> extends AbstractListener<T>
 {
-    private LogBlock lb;
+    protected LogBlock lb;
 
     public BukkitListener(LogBlock lb)
     {
