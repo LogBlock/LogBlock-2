@@ -26,10 +26,9 @@ public class EntityExplode extends BukkitListener<EntityExplodeEvent> {
     public void listen(EntityExplodeEvent event) {
         List<Block> blocks = event.blockList();
         for (Block block : blocks ) {
-            Location location = block.getLocation();
-            int x = location.getBlockX();
-            int y = location.getBlockY();
-            int z = location.getBlockZ();
+            int x = block.getX();
+            int y = block.getY();
+            int z = block.getZ();
             this.lb.getDataStore().write(new MainEntry(Action.EXPLOSION, event.getEntityType().getName(), block.getTypeId(), block.getData(), Material.AIR.getId(), blank, x, y, z));
         }
     }

@@ -27,10 +27,9 @@ public class BlockBreak extends BukkitListener<BlockBreakEvent>
     {
         Block block = event.getBlock();
         Player player = event.getPlayer();
-        Location location = block.getLocation();
-        int x = location.getBlockX();
-        int y = location.getBlockY();
-        int z = location.getBlockZ();
+        int x = block.getX();
+        int y = block.getY();
+        int z = block.getZ();
         this.lb.getDataStore().write(new MainEntry(Action.BLOCK_BREAK, player.getName(), block.getTypeId(), block.getData(), Material.AIR.getId(), blank, x, y, z));
     }
 }
