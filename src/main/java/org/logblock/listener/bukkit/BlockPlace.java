@@ -19,7 +19,7 @@ public class BlockPlace extends BukkitListener<BlockPlaceEvent>
     }
 
     @Override
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void listen(BlockPlaceEvent event)
     {
         Block block = event.getBlockPlaced();

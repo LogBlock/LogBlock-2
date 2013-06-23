@@ -19,7 +19,7 @@ public class BlockBreak extends BukkitListener<BlockBreakEvent>
     }
 
     @Override
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void listen(BlockBreakEvent event)
     {
         Block block = event.getBlock();
