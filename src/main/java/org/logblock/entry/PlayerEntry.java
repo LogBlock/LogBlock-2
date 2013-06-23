@@ -12,6 +12,10 @@ public class PlayerEntry extends AbstractEntry
 
     private final String name;
 
+    public PlayerEntry(String name) {
+        this.name = name;
+    }
+
     public PlayerEntry(int id, String name)
     {
         super(id);

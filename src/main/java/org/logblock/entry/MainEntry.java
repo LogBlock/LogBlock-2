@@ -29,6 +29,32 @@ public class MainEntry extends AbstractEntry
     private List<AbstractEntry> children;
     private PlayerEntry player;
 
+    /**
+     * Used to create a main entry that happened "right now"
+     * @param action What caused the entry
+     * @param player The player which caused the entry
+     * @param from The type of block which was originally there
+     * @param FromData The data of the block which was originally there
+     * @param to The type of block now
+     * @param ToData The data of the block now
+     * @param x x coordinate of the block
+     * @param y y coordinate of the block
+     * @param z z coordinate of the block
+     */
+    public MainEntry(Action action, String player, int from, byte fromData, int to, byte toData, int x, int y, int z)
+    {
+        this.action = action;
+        this.player = new PlayerEntry(player);
+        this.from = from;
+        this.fromData = fromData;
+        this.to = to;
+        this.toData = toData;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.date = new Date();
+    }
+
     public MainEntry(Action action, Date date, int playerId, int from, byte fromData, int to, byte toData, int x, int y, int z)
     {
         this.action = action;

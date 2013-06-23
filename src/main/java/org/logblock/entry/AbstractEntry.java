@@ -8,7 +8,7 @@ import java.io.Serializable;
 public abstract class AbstractEntry implements Serializable
 {
 
-    private int id;
+    private int id = -1;
 
     public AbstractEntry()
     {
