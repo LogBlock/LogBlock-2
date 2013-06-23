@@ -2,6 +2,7 @@ package org.logblock;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.logblock.listener.bukkit.BlockBreak;
 import org.logblock.storage.DataStore;
 import org.logblock.storage.mysql.MySQLDataStore;
 import org.mcstats.Metrics;
@@ -51,6 +52,8 @@ public class LogBlock extends JavaPlugin
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+
+        new BlockBreak(this); // TODO: uhh, needs to be configurable (what is logged) and needs a proper method
 
         try
         {

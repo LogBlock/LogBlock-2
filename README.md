@@ -9,7 +9,7 @@ LogBlock 2 is a ground up rewrite of LogBlock designed to be more efficient and 
 Features
 --------
 
-* Connection pooling with C3P0
+* Connection pooling with BoneCP
 * Ultra fast rollback
 * Bukkit support
 * Forge support
