@@ -16,7 +16,7 @@ public class LogBlock extends JavaPlugin
     @Getter
     private static LogBlock instance;
     @Getter
-    private DataStore dataStore;
+    public static DataStore dataStore;
 
     private Configuration config;
     private Consumer consumer;
