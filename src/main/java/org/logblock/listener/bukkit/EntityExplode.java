@@ -1,6 +1,5 @@
 package org.logblock.listener.bukkit;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -20,7 +19,7 @@ public class EntityExplode extends BukkitListener<EntityExplodeEvent> {
     }
 
     @Override
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void listen(EntityExplodeEvent event) {
         List<Block> blocks = event.blockList();
         for (Block block : blocks ) {
