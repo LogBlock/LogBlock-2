@@ -3,6 +3,8 @@ package org.logblock;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.logblock.listener.bukkit.BlockBreak;
+import org.logblock.listener.bukkit.BlockPlace;
+import org.logblock.listener.bukkit.EntityExplode;
 import org.logblock.storage.DataStore;
 import org.logblock.storage.mysql.MySQLDataStore;
 import org.mcstats.Metrics;
@@ -40,7 +42,7 @@ public class LogBlock extends JavaPlugin
         } catch (Throwable ex)
         {
             getLogger().severe("=========================");
-            getLogger().severe("Error starting up logblock");
+            getLogger().severe("Error starting up LogBlock");
             getLogger().severe("Please provide this entire error if you are going to report this");
             getLogger().severe(ex.getMessage());
             getLogger().severe("");
@@ -54,6 +56,9 @@ public class LogBlock extends JavaPlugin
         }
 
         new BlockBreak(this); // TODO: uhh, needs to be configurable (what is logged) and needs a proper method
+        new EntityExplode(this);
+        new BlockPlace(this);
+
 
         try
         {
