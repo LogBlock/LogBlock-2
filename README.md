@@ -36,6 +36,16 @@ Supported Log Entries
 * container-access
 * worldedit
 
+Notes for developers
+---------------
+We use maven to compile logblock, simply clone the repo and run ``mvn clean install`` to automagically download
+dependencies and build the plugin. The final universal .jar will be under ``Logblock-2-Aggregate/target``
+
+The project is set up so that all database/non implementation based code is within the ``LogBlock-2-API`` module
+and a seperate module is created for each implementation such as ``LogBlock-2-Bukkit`` which contaains code specific
+to it. The ``LogBlock-2-Aggregate`` module takes all of the independent platform modules and compiles them into one single
+universal jar.
+
 Database Schema
 ---------------
 ```SQL
