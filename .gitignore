@@ -13,8 +13,9 @@
 
 # maven
 /target
-*/target
 /dependency-reduced-pom.xml
+*/target
+*/dependency-reduced-pom.xml
 
 # vim
 .*.sw[a-p]
