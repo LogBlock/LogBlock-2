@@ -1,4 +1,4 @@
-LogBlock 2
+LogBlock 2 [![Build Status](https://api.travis-ci.org/LogBlock/LogBlock-2.png)](https://travis-ci.org/LogBlock/LogBlock-2)
 ==========
 
 A rewrite of the most successful block logging software.
